@@ -3,16 +3,17 @@
 
 /* layout */
 :root {
-  --primary: #1aac83;
+  --primary: #9c1de7; /* Neon Purple */
   --error: #e7195a;
 }
 body {
-  background: #f1f1f1;
+  background: #0f0f0f; /* Dark background */
   margin: 0;
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
+  color: #f1f1f1; /* Lighter text color */
 }
 header {
-  background: #fff;
+  background: #1f1f1f; /* Slightly lighter header background */
 }
 header .container {
   max-width: 1400px;
@@ -23,10 +24,10 @@ header .container {
   justify-content: space-between;
 }
 header a {
-  color: #333;
+  color: #f1f1f1; /* Lighter link color */
   text-decoration: none;
 }
-.pages{
+.pages {
   max-width: 1400px;
   padding: 20px;
   margin: 0 auto;
@@ -39,12 +40,12 @@ header a {
   gap: 100px;
 }
 .workout-details {
-  background: #fff;
+  background: #1f1f1f; /* Slightly lighter workout details background */
   border-radius: 4px;
   margin: 20px auto;
   padding: 20px;
   position: relative;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 0px 0px 20px rgba(156, 29, 231, 0.5); /* Neon purple glow */
 }
 .workout-details h4 {
   margin: 0 0 10px 0;
@@ -54,21 +55,23 @@ header a {
 .workout-details p {
   margin: 0;
   font-size: 0.9em;
-  color: #555;
+  color: #ccc; /* Lighter text color */
 }
 .workout-details span {
   position: absolute;
   top: 20px;
   right: 20px;
   cursor: pointer;
-  background: #f1f1f1;
+  background: #1f1f1f; /* Slightly lighter icon background */
   padding: 6px;
   border-radius: 50%;
-  color: #333;
+  color: #9c1de7; /* Neon purple icon color */
+  box-shadow: 0px 0px 10px rgba(156, 29, 231, 0.8); /* Neon purple glow */
 }
 
 /* new workout form */
-label, input {
+label,
+input {
   display: block;
 }
 input {
@@ -76,26 +79,30 @@ input {
   margin-top: 10px;
   margin-bottom: 20px;
   width: 100%;
-  border: 1px solid #ddd;
+  border: 1px solid #444; /* Darker border */
   border-radius: 4px;
   box-sizing: border-box;
+  background: #1f1f1f; /* Slightly lighter input background */
+  color: #f1f1f1; /* Lighter text color */
 }
 form button {
   background: var(--primary);
   border: 0;
-  color: #fff;
+  color: #f1f1f1; /* Lighter button text color */
   padding: 10px;
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: 0px 0px 10px rgba(156, 29, 231, 0.8); /* Neon purple glow */
 }
 div.error {
   padding: 10px;
-  background: #ffefef;
+  background: #b5003e; /* Darker error background */
   border: 1px solid var(--error);
-  color: var(--error);
+  color: #f1f1f1; /* Lighter error text color */
   border-radius: 4px;
   margin: 20px 0;
+  box-shadow: 0px 0px 10px rgba(156, 29, 231, 0.8); /* Neon purple glow */
 }
 input.error {
   border: 1px solid var(--error);
