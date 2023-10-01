@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.config.EnableMongoAuditing;
 
 @SpringBootApplication
 @EnableMongoAuditing
-public class ServerApplication implements CommandLineRunner {
+public class 	ServerApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ServerApplication.class, args);

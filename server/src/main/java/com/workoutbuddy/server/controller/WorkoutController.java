@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "https://workoutbuddie.netlify.app")
+@CrossOrigin(origins = {"https://workoutbuddie.netlify.app", "http://localhost:3000"})
 class WorkoutController {
         private final WorkoutRepository repository;
 
@@ -40,6 +40,12 @@ class WorkoutController {
         @GetMapping("workouts/{id}")
         Optional<Workout> one(@PathVariable String id) {
             return repository.findById(id);
+        }
+
+        @GetMapping("/workouts/part/{part}")
+        public List<Workout> findByPart(@PathVariable String part) {
+            Sort sortByCreatedAtDesc = Sort.by(Sort.Direction.DESC, "createdAt");
+            return repository.findByPart(part,sortByCreatedAtDesc);
         }
 
         @PutMapping("/workouts/{id}")

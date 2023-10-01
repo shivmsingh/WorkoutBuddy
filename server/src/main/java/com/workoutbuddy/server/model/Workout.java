@@ -12,6 +12,8 @@ public class Workout {
     private String title;
     private int reps;
     private int load;
+
+    private String part;
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
@@ -19,18 +21,19 @@ public class Workout {
     @Version
     private int version;
 
-    public Workout(String title, int reps, int load) {
+    public Workout(String title, int reps, int load, String part) {
         super();
         this.title = title;
         this.reps = reps;
         this.load = load;
+        this.part = part;
     }
 
     @Override
     public String toString() {
         return String.format(
-                "Workout[id='%s', title='%s', reps='%d', load='%d', createdAt='%s', updatedAt='%s', version='%s']",
-                _id, title, reps, load, createdAt, updatedAt, version);
+                "Workout[id='%s', title='%s', reps='%d', load='%d', part='%s', createdAt='%s', updatedAt='%s', version='%s']",
+                _id, title, reps, load, part, createdAt, updatedAt, version);
     }
 
     public String get_id() {
@@ -39,6 +42,14 @@ public class Workout {
 
     public void set_id(String _id) {
         this._id = _id;
+    }
+
+    public String getPart() {
+        return part;
+    }
+
+    public void setPart(String part) {
+        this.part = part;
     }
 
     public String getTitle() {
