@@ -7,13 +7,14 @@ const WorkoutForm = () => {
   const [title, setTitle] = useState('')
   const [load, setLoad] = useState('')
   const [reps, setReps] = useState('')
+  const [part, setPart] = useState('Chest')
   const [error, setError] = useState(null)
   const [emptyFields, setEmptyFields] = useState([])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const workout = {title, load, reps}
+    const workout = {title, load, reps, part}
     
     const response = await fetch('https://workoutbuddy-t2yc.onrender.com/api/workouts', {
       method: 'POST',
@@ -69,6 +70,18 @@ const WorkoutForm = () => {
         className={emptyFields.includes('reps') ? 'error' : ''}
         required
       />
+
+      <label>Body Part:</label>
+      <select value={part} onChange={(e) => setPart(e.target.value)}>
+          <option value="Head">Head</option>
+          <option value="Arms">Arms</option>
+          <option value="Hands">Hands</option>
+          <option value="Shoulders">Shoulders</option>
+          <option value="Chest">Chest</option>
+          <option value="Stomach">Stomach</option>
+          <option value="Legs">Legs</option>
+          <option value="Feet">Feet</option>
+      </select>
 
       <button>Add Workout</button>
       {error && <div className="error">{error}</div>}

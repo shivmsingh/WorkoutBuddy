@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // pages & components
-import Home from './pages/Home'
 import Navbar from './components/Navbar'
+import AllWorkouts from './pages/AllWorkouts'
+import PartPage from './pages/PartPage';
+import Home from './pages/Home';
 
 function App() {
 
@@ -12,9 +14,17 @@ function App() {
         <Navbar />
         <div className="pages">
           <Routes>
-            <Route 
+          <Route 
               path="/" 
               element={<Home />} 
+            />
+            <Route 
+              path="/allworkouts" 
+              element={<AllWorkouts />} 
+            />
+            <Route 
+              path="/part/:part" 
+              element={<PartPage />} 
             />
           </Routes>
         </div>
