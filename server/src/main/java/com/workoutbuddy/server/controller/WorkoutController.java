@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "https://workoutbuddie.netlify.app")
 class WorkoutController {
         private final WorkoutRepository repository;
 
