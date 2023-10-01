@@ -12,7 +12,7 @@ const WorkoutDetails = ({ workout }) => {
     })
     const json = await response.json()
 
-    if (response.status === 200) {
+    if (response) {
       dispatch({type: 'DELETE_WORKOUT', payload: json})
     }
   }
