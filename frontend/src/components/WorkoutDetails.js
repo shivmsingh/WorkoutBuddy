@@ -5,14 +5,14 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutsContext()
-
+  
   const handleClick = async () => {
     const response = await fetch('https://workoutbuddy-t2yc.onrender.com/api/workouts/' + workout._id, {
       method: 'DELETE'
     })
     const json = await response.json()
 
-    if (response) {
+    if (json.status === 200) {
       dispatch({type: 'DELETE_WORKOUT', payload: json})
     }
   }
