@@ -4,6 +4,7 @@ import com.workoutbuddy.server.model.Workout;
 import com.workoutbuddy.server.repository.WorkoutRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 import java.util.Optional;
