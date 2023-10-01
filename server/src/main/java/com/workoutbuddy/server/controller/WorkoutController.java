@@ -21,7 +21,8 @@ class WorkoutController {
         // tag::get-aggregate-root[]
         @GetMapping("/workouts")
         List<Workout> all() {
-            return repository.findAll();
+           Sort sortByCreatedAtDesc = Sort.by(Sort.Direction.DESC, "createdAt");
+           return repository.findAll(sortByCreatedAtDesc);
         }
         // end::get-aggregate-root[]
 
