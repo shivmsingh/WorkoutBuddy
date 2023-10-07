@@ -73,7 +73,7 @@ class WorkoutController {
         @DeleteMapping("/workouts/{id}")
         @ResponseStatus(code = HttpStatus.OK, reason = "OK")
         void deleteWorkout(@PathVariable String id) {
-            String username = getCurrentUsername(); 
+            String username = getCurrentUsername();
             repository.deleteById(id);
         }
 

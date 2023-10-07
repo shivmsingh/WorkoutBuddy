@@ -56,7 +56,7 @@
         @Bean
         CorsConfigurationSource corsConfigurationSource() {
             CorsConfiguration configuration = new CorsConfiguration();
-            configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+            configuration.setAllowedOrigins(Arrays.asList("https://workoutbuddy-t2yc.onrender.com/"));
             configuration.setAllowedMethods(Arrays.asList("GET","POST","DELETE"));
             UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
             source.registerCorsConfiguration("/**", configuration);
