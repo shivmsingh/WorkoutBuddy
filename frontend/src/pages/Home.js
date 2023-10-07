@@ -9,8 +9,8 @@ import Login from "./Login";
 import Navbar from "../components/Navbar";
 
 const Home = () => {
-  const [error, setError] = useState(null);
-  const { workouts, dispatch } = useWorkoutsContext();
+  
+  const {dispatch } = useWorkoutsContext();
   const [showRegister, setShowRegister] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [part, setPart] = useState("");
@@ -66,11 +66,9 @@ const Home = () => {
         );
 
         if (response.ok) {
-          setError(null);
           dispatch({ type: "SET_WORKOUTS", payload: json });
         }
       } catch (error) {
-        setError("Credentials expired, Please login!");
         setIsLoggedIn(false);
         localStorage.setItem("accessToken", null);
       }
