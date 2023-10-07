@@ -1,7 +1,12 @@
 package com.workoutbuddy.server.model;
 
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwt;
 import org.springframework.data.annotation.*;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +19,8 @@ public class Workout {
     private int load;
 
     private String part;
+
+    private String createdBy;
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
@@ -27,13 +34,25 @@ public class Workout {
         this.reps = reps;
         this.load = load;
         this.part = part;
+        this.createdBy = getCurrentUsername();
     }
 
     @Override
     public String toString() {
         return String.format(
-                "Workout[id='%s', title='%s', reps='%d', load='%d', part='%s', createdAt='%s', updatedAt='%s', version='%s']",
-                _id, title, reps, load, part, createdAt, updatedAt, version);
+                "Workout[id='%s', title='%s', reps='%d', load='%d', part='%s', createdBy='%s', createdAt='%s', updatedAt='%s', version='%s']",
+                _id, title, reps, load, part, createdBy, createdAt, updatedAt, version);
+    }
+
+    private String getCurrentUsername() {
+        // Assuming your UserDetails contain the username
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof org.springframework.security.core.userdetails.UserDetails) {
+            return ((org.springframework.security.core.userdetails.UserDetails) principal).getUsername();
+        } else {
+            // If UserDetails is not available, you might need to adjust based on your authentication setup
+            return null;
+        }
     }
 
     public String get_id() {
@@ -99,4 +118,10 @@ public class Workout {
     public void setVersion(int version) {
         this.version = version;
     }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+
 }

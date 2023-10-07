@@ -1,8 +1,5 @@
 package com.workoutbuddy.server;
 
-import com.workoutbuddy.server.model.Workout;
-import com.workoutbuddy.server.repository.WorkoutRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,10 +13,12 @@ public class 	ServerApplication implements CommandLineRunner {
 		SpringApplication.run(ServerApplication.class, args);
 	}
 
-	@Autowired
-	WorkoutRepository repository;
-
 	@Override
 	public void run(String... args) throws Exception {
+		try {
+			System.out.println("Server started on port 8080");
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }

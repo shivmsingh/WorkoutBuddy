@@ -2,6 +2,7 @@ package com.workoutbuddy.server.controller;
 
 import com.workoutbuddy.server.model.Workout;
 import com.workoutbuddy.server.repository.WorkoutRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -10,9 +11,22 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = {"https://workoutbuddie.netlify.app", "http://localhost:3000"})
+@CrossOrigin(origins = "*")
 class WorkoutController {
         private final WorkoutRepository repository;
+
+        private String getCurrentUsername() {
+        // Assuming your UserDetails contain the username
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            if (principal instanceof org.springframework.security.core.userdetails.UserDetails) {
+                return ((org.springframework.security.core.userdetails.UserDetails) principal).getUsername();
+            } else {
+                // If UserDetails is not available, you might need to adjust based on your authentication setup
+                return null;
+            }
+        }
+
+
 
         WorkoutController(WorkoutRepository repository) {
             this.repository = repository;
@@ -23,8 +37,9 @@ class WorkoutController {
         // tag::get-aggregate-root[]
         @GetMapping("/workouts")
         List<Workout> all() {
+           String username = getCurrentUsername();
            Sort sortByCreatedAtDesc = Sort.by(Sort.Direction.DESC, "createdAt");
-           return repository.findAll(sortByCreatedAtDesc);
+           return repository.findBycreatedBy(username,sortByCreatedAtDesc);
         }
         // end::get-aggregate-root[]
 
@@ -39,13 +54,8 @@ class WorkoutController {
 
         @GetMapping("workouts/{id}")
         Optional<Workout> one(@PathVariable String id) {
-            return repository.findById(id);
-        }
-
-        @GetMapping("/workouts/part/{part}")
-        public List<Workout> findByPart(@PathVariable String part) {
-            Sort sortByCreatedAtDesc = Sort.by(Sort.Direction.DESC, "createdAt");
-            return repository.findByPart(part,sortByCreatedAtDesc);
+            String username = getCurrentUsername();
+            return repository.findByIdAndCreatedBy(id,username);
         }
 
         @PutMapping("/workouts/{id}")
@@ -63,6 +73,8 @@ class WorkoutController {
         @DeleteMapping("/workouts/{id}")
         @ResponseStatus(code = HttpStatus.OK, reason = "OK")
         void deleteWorkout(@PathVariable String id) {
+            String username = getCurrentUsername(); 
             repository.deleteById(id);
         }
+
     }
